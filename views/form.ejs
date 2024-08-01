@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        body {
+            background-color: #000; 
+             color: white;
+            height:100vh;
+            width: 100vh;
+            /* aspect-ratio: 1; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .form{
+            
+            display: flex;
+            height: 15rem;
+            border:white solid;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem;
+            flex-direction: column;
+            aspect-ratio: 1.5;
+        }
+        form{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: center; */
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <form action="http://localhost/" method="post" id="formCreate">
+            <h1>Create Data</h1>
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="amount" placeholder="Amount">
+            <button type="submit">Confirm</button>
+        </form>
+        <form action="http://localhost/update" method="post" id="formUpdate">
+            <h1>Update Data</h1>
+            <input type="text" name="oldname" placeholder="Oldname">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="amount" placeholder="amount">
+            <button type="submit">Confirm</button>
+        </form>
+        <form action="http://localhost/delete" method="post" id="formDelete">
+            <h1>Delete Data</h1>
+            <input type="text" name="name" placeholder="Name">           
+            <button type="submit">Confirm</button>
+        </form>
+        <div class="">
+
+            <input  type="checkbox" name="Create" id="Create">
+            <label for="Create">Create</label>
+            <input type="checkbox" name="Delete" id="Delete">
+            <label for="Delete">Delete</label>
+            <input type="checkbox" name="Update" id="Update">
+            <label for="Update">Update</label>
+            <div class="">
+
+                <a href="/home">Home</a>
+            </div>
+
+        </div>
+        
+    </div>
+
+
+    <script>
+        const Create =document.querySelector('#Create')
+        const Update =document.querySelector('#Update')
+        const Delete =document.querySelector('#Delete')
+
+        const form_Create = document.querySelector('#formCreate')
+        const form_Update = document.querySelector('#formUpdate')
+        const form_Delete = document.querySelector('#formDelete')
+        form_Update.style.display = "none"
+        form_Delete.style.display = "none"
+        form_Create.style.display = "none"
+        
+        Create.addEventListener('click',()=>{
+        if(Create.checked ==  true){
+            Update.disabled = true
+            Delete.disabled = true
+            form_Update.style.display = "none"
+            form_Delete.style.display = "none"
+            form_Create.style.display="flex"
+        }
+        else{
+            Update.disabled = false
+            Delete.disabled = false
+            // form_Update.style.display = "flex"
+            // form_Delete.style.display = "flex"
+
+        }
+       })
+       Update.addEventListener('click',()=>{
+        if(Update.checked ==  true){
+            Create.disabled = true
+            Delete.disabled = true
+            form_Create.style.display = "none"
+            form_Delete.style.display = "none"
+            form_Update.style.display = "flex"
+        }
+        else{
+            Create.disabled = false
+            Delete.disabled = false
+            // form_Delete.style.display = "flex"
+        }
+       })
+       Delete.addEventListener('click',()=>{
+        if(Delete.checked ==  true){
+            Update.disabled = true
+            Create.disabled = true
+            form_Create.style.display = "none"
+            form_Update.style.display = "none"
+            form_Delete.style.display = "flex"
+        }
+        else{
+            Update.disabled = false
+            Create.disabled = false
+            // form_Create.style.display = "flex"
+            form_Delete.style.display = "flex"
+        }
+       })
+    </script>
+</body>
+</html>
